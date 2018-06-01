@@ -3,9 +3,6 @@
 var typeOf = function (obj) {
   return {}.toString.call(obj).slice(8, -1).toLowerCase()
 }
-var xquo = function (str) {
-  return str.replace(/^"|"$/g, '')
-}
 
 var methods = {
   id: function (base, step, target) {
@@ -94,6 +91,7 @@ var methods = {
     width = width || 200
     height = height || 100
     bg = bg || '#eee'
+    console.log(bg)
     text = text || width + ' x ' + height
 
     if (typeof document == 'undefined') return
@@ -109,7 +107,7 @@ var methods = {
     ctx.fillStyle = bg
     ctx.fillRect(0,0, width,height)
 
-    var fontSize = 24
+    var fontSize = width < 70 ? 10: 20
     ctx.fillStyle = '#a9a9a9'
     ctx.font = fontSize + 'px Arial'
     ctx.textAlign = 'center'
@@ -120,7 +118,7 @@ var methods = {
   }
 }
 
-function md(rule) {
+function makeData(rule) {
   if ('string' == typeOf(rule)) {
     var m_a = rule.split('(') // method(100, 5) => ['method', '100, 5)']
     // method
@@ -132,6 +130,8 @@ function md(rule) {
       // to number
       for (var i = args.length - 1; i >= 0; i--) {
         var arg = args[i]
+        // '"arg"' => 'arg'
+        args[i] = arg.replace(/^\s*["']|["']\s*$/g, '')
         if (!isNaN(arg)) {
           args[i] = Number(arg)
         }
@@ -144,7 +144,7 @@ function md(rule) {
     var obj = {}
     for(var key in rule){
       var value = rule[key]
-      obj[key] = md(value)
+      obj[key] = makeData(value)
     }
     return obj
   }
@@ -155,12 +155,12 @@ function md(rule) {
     var max = rule[2] || min
     var length = obj? methods.number(min, max): 0
     for(var i=0; i<length; i++){
-      arr[i] = md(obj)
+      arr[i] = makeData(obj)
     }
     return arr
   }
   return rule
 }
 
-window.md = md
+window.makeData = makeData
 })()

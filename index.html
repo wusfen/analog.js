@@ -11,18 +11,17 @@
 	<pre id="output"></pre>
 	<script src="makeData.js"></script>
 	<script>
-		var data = md({
-		  value: 'type[(arg1?, arg2?, ...)]?',
+		var data = makeData({
 		  number: 'number',
 		  boolean: 'boolean',
 		  string: 'string',
 		  date: 'date',
-		  img: 'img(300, 150)',
+		  img: 'img(300,150)',
 		  id: 'id',
 		  name: 'name',
-		  chinese: 'chinese',
 		  url: 'url',
 		  email: 'email',
+		  chinese: 'chinese',
 		  array: [{
 		    id: 'id',
 		    name: 'name',

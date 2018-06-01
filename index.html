@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>makeData</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+</head>
+<body>
+	<img id="img">
+	<pre id="output"></pre>
+	<script src="makeData.js"></script>
+	<script>
+		var data = md({
+		  value: 'type[(arg1?, arg2?, ...)]?',
+		  number: 'number',
+		  boolean: 'boolean',
+		  string: 'string',
+		  date: 'date',
+		  img: 'img(300, 150)',
+		  id: 'id',
+		  name: 'name',
+		  chinese: 'chinese',
+		  url: 'url',
+		  email: 'email',
+		  array: [{
+		    id: 'id',
+		    name: 'name',
+		    email: 'email',
+		  }, 3, 5]
+		})
+		output.innerHTML = JSON.stringify(data, null, '  ')
+		img.src = data.img
+	</script>
+</body>
+</html>

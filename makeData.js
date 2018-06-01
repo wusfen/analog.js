@@ -6,6 +6,7 @@ var typeOf = function (obj) {
 
 var methods = {
   id: function (base, step, target) {
+    // todo target
     base = base || 1
     step = step || 1
     var i = this.i = this.i || 0
@@ -49,7 +50,7 @@ var methods = {
     }
     return str
   },
-  chinese: function (min, max) {
+  zh: function (min, max) {
     min = min || 25
     max = max || min
     var chars = '我人有的和主产不为这工要在地一上是中国经以发了民同'

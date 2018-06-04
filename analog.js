@@ -1,10 +1,10 @@
 !(function(){
 
 var typeOf = function (obj) {
-  return {}.toString.call(obj).slice(8, -1).toLowerCase()
+  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
 }
 
-var methods = {
+var random = {
   id: function (base, step, target) {
     // todo target
     base = base || 1
@@ -30,7 +30,7 @@ var methods = {
   date: function (min, max) {
     min = min || +new Date - 1000*60*60*24*365
     max = max || +new Date + 1000*60*60*24*365
-    var value = methods.number(min, max)
+    var value = random.number(min, max)
     return new Date(value)
   },
   string: function (min, max, space) {
@@ -40,10 +40,10 @@ var methods = {
     var endCode = 0x007a
     var startCode = 0x0061
 
-    var length = methods.number(min, max)
+    var length = random.number(min, max)
     var str = ''
     for (var i = 0; i < length; i++) {
-      var code = methods.number(endCode, startCode)
+      var code = random.number(endCode, startCode)
       var char = String.fromCharCode(code)
       // char = Math.random() < .16? space : String.fromCharCode(code)
       str += char
@@ -54,10 +54,10 @@ var methods = {
     min = min || 25
     max = max || min
     var chars = '我人有的和主产不为这工要在地一上是中国经以发了民同'
-    var length = methods.number(min, max)
+    var length = random.number(min, max)
     var str = ''
     for (var i = 0; i < length; i++) {
-      var index = methods.number(0, chars.length - 1)
+      var index = random.number(0, chars.length - 1)
       var char = chars.charAt(index)
       str += char
     }
@@ -65,7 +65,7 @@ var methods = {
   },
   repeat: function (s, min, max) {
     s = xquo(s)
-    var length = methods.number(min, max)
+    var length = random.number(min, max)
     var str = ''
     for (var i = 0; i < length; i++) {
       str += s
@@ -75,24 +75,23 @@ var methods = {
   url: function (min, max) {
     min = min || 5
     max = max || 20
-    return 'http://'+methods.string(3,7)+'.com/' + methods.string(min, max)
+    return 'http://'+random.string(3,7)+'.com/' + random.string(min, max)
   },
   email: function (min, max) {
     min = min || 5
     max = max || 10
-    return methods.string(min, max) + '@'+methods.string(3,7)+'.com'
+    return random.string(min, max) + '@'+random.string(3,7)+'.com'
   },
   name: function () {
-    var n1 = '赵钱孙李周吴郑王'.split('')[methods.number(0,7)]
-    var n2 = '春夏秋冬,'.split(/,|\B/)[methods.number(0, 4)]
-    var n3 = '梅兰竹菊'.split('')[methods.number(0, 3)]
+    var n1 = '赵钱孙李周吴郑王'.split('')[random.number(0,7)]
+    var n2 = '春夏秋冬,'.split(/,|\B/)[random.number(0, 4)]
+    var n3 = '梅兰竹菊'.split('')[random.number(0, 3)]
     return n1+n2+n3
   },
   img: function (width, height, bg, text) {
     width = width || 200
     height = height || 100
     bg = bg || '#eee'
-    console.log(bg)
     text = text || width + ' x ' + height
 
     if (typeof document == 'undefined') return
@@ -119,12 +118,12 @@ var methods = {
   }
 }
 
-function makeData(rule) {
+function analog(rule) {
   if ('string' == typeOf(rule)) {
     var m_a = rule.split('(') // method(100, 5) => ['method', '100, 5)']
     // method
     var method = m_a[0]
-    if (method in methods) {
+    if (method in random) {
       var args = (m_a[1] || '').replace(')', '')
       // args
       args = args.split(',')
@@ -138,14 +137,14 @@ function makeData(rule) {
         }
       }
       // ()
-      return methods[method].apply(methods , args)
+      return random[method].apply(random , args)
     }
   }
   if ('object' == typeOf(rule)) {
     var obj = {}
     for(var key in rule){
       var value = rule[key]
-      obj[key] = makeData(value)
+      obj[key] = analog(value)
     }
     return obj
   }
@@ -154,14 +153,14 @@ function makeData(rule) {
     var obj = rule[0]
     var min = rule[1] || 1
     var max = rule[2] || min
-    var length = obj? methods.number(min, max): 0
+    var length = obj? random.number(min, max): 0
     for(var i=0; i<length; i++){
-      arr[i] = makeData(obj)
+      arr[i] = analog(obj)
     }
     return arr
   }
   return rule
 }
 
-window.makeData = makeData
+window.analog = analog
 })()

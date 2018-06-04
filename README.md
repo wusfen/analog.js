@@ -56,7 +56,7 @@ analog({
   * min 最小长度
   * max 最大长度
 * { key: type, ... } 对象类型
-* [ type, min, max=min ] 数组类型，以第一个元素为模板生成指定长度的数组
+* [ type, min=1, max=min ] 数组类型，以第一个元素为模板生成指定长度的数组
   * type 任意类型
   * min 最小长度
   * max 最大长度

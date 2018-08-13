@@ -1,3 +1,5 @@
+// https://github.com/wusfen/analog.js
+
 !(function(){
 
 var typeOf = function (obj) {

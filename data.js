@@ -1,4 +1,4 @@
-// https://github.com/wusfen/analog.js
+// https://github.com/wusfen/data.js
 
 !(function(){
 
@@ -120,7 +120,7 @@ var random = {
   }
 }
 
-function analog(rule) {
+function Data(rule) {
   if ('string' == typeOf(rule)) {
     var m_a = rule.split('(') // method(100, 5) => ['method', '100, 5)']
     // method
@@ -146,7 +146,7 @@ function analog(rule) {
     var obj = {}
     for(var key in rule){
       var value = rule[key]
-      obj[key] = analog(value)
+      obj[key] = Data(value)
     }
     return obj
   }
@@ -157,12 +157,16 @@ function analog(rule) {
     var max = rule[2] || min
     var length = obj? random.number(min, max): 0
     for(var i=0; i<length; i++){
-      arr[i] = analog(obj)
+      arr[i] = Data(obj)
     }
     return arr
   }
   return rule
 }
 
-window.analog = analog
+if (typeof module!='undefined') {
+  module.exports = Data
+} else {
+  window.Data = Data
+}
 })()

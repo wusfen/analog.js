@@ -4,12 +4,12 @@
 
 ## 用法
 ```javascript
-analog('type(args..)?')
+Data('type(args..)?')
 ```
 
 ## 示例
 ```javascript
-analog({
+Data({
   number: 'number',
   boolean: 'boolean',
   string: 'string',

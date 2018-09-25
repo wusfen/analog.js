@@ -4,7 +4,9 @@
 
 ## 用法
 ```javascript
-Data('type(args..)?')
+Data('type')
+Data('type(min, max)')
+Data('type(args...)')
 ```
 
 ## 示例

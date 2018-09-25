@@ -4,10 +4,20 @@
 
 ## 用法
 ```javascript
-Data('type(args..)?')
+Data('type')
+Data('type(min, max)')
+Data('type(args...)')
 ```
 
 ## 示例
+
+### 简单示例
+```javascript
+Data('id') //=> 1
+Data('date') // => Tue Sep 25 2018 08:08:08 GMT+0800 (中国标准时间)
+```
+
+### 复杂示例
 ```javascript
 Data({
   number: 'number',
@@ -55,7 +65,9 @@ Data({
 * zh(min=25, max=min) 中文字符
   * min 最小长度
   * max 最大长度
-* { key: type, ... } 对象类型
+* { key: type } 对象类型
+  * key 键名
+  * type 键值，任意类型，可用类型名称生成数据，如： {userId: 'id'}
 * [ type, min=1, max=min ] 数组类型，以第一个元素为模板生成指定长度的数组
   * type 任意类型
   * min 最小长度

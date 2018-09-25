@@ -60,3 +60,7 @@ Data({
   * type 任意类型
   * min 最小长度
   * max 最大长度
+
+
+## todo
+phone, tel, function, array|1

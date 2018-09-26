@@ -62,6 +62,11 @@ Data({
 * name 两三个字的中文姓名
 * url http地址
 * email 电子邮箱
+* phone 手机号
+* repeat(char, min, max) 重复字符
+  * char 字符
+  * min 最小次数
+  * max 最大次数
 * zh(min=25, max=min) 中文字符
   * min 最小长度
   * max 最大长度
@@ -72,7 +77,3 @@ Data({
   * type 任意类型
   * min 最小长度
   * max 最大长度
-
-
-## todo
-phone, tel, function, array|1

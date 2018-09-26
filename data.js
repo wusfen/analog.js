@@ -17,7 +17,7 @@
     },
     number: function (min, max, fixed) {
       min = min || 0
-      max = max !== undefined? max : 100
+      max = max !== undefined ? max : 100
       fixed = fixed || 0
       var diff = max - min
       var value = Math.random() * diff + min
@@ -84,8 +84,8 @@
       max = max || 10
       return random.string(min, max) + '@' + random.string(3, 7) + '.com'
     },
-    phone: function (){
-      return '1' + random.one([3,5,7,8]) + random.number(100000000, 999999999)
+    phone: function () {
+      return '1' + random.one([3, 5, 7, 8]) + random.number(100000000, 999999999)
     },
     name: function () {
       var n1 = '赵钱孙李周吴郑王'.split('')[random.number(0, 7)]
@@ -121,9 +121,9 @@
 
       return canvas.toDataURL()
     },
-    one: function(array){
+    one: function (array) {
       console.log(array)
-      return array[random.number(0, array.length-1)]
+      return array[random.number(0, array.length - 1)]
     }
   }
 
@@ -153,6 +153,45 @@
       var obj = {}
       for (var key in rule) {
         var value = rule[key]
+        // auto
+        if (value == 'auto') {
+          if (value.match(/id$/i)) {
+            value = 'id'
+          }
+          else if (value.match(/number|num|count|total|size|length/i)) {
+            value = 'number'
+          }
+          else if (value.match(/^(is|has)/)) {
+            value = 'boolean'
+          }
+          else if (value.match(/date|time/i)) {
+            value = 'date'
+          }
+          else if (value.match(/title/i)) {
+            value = 'zh(20, 30)'
+          }
+          else if (value.match(/content|text/i)) {
+            value = 'zh(50, 100)'
+          }
+          else if (value.match(/url/i)) {
+            value = 'url'
+          }
+          else if (value.match(/email/i)) {
+            value = 'email'
+          }
+          else if (value.match(/name|author/i)) {
+            value = 'name'
+          }
+          else if (value.match(/img|image|avatar/i)) {
+            value = 'img'
+          }
+          else if (value.match(/phone/i)) {
+            value = 'phone'
+          }
+          else {
+            value = 'string'
+          }
+        }
         obj[key] = Data(value)
       }
       return obj

@@ -171,8 +171,6 @@
     return rule
   }
 
-  console.log(Data('repeat("☆")'))
-
   if (typeof module != 'undefined') {
     module.exports = Data
   } else {

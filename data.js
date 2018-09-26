@@ -153,39 +153,40 @@
       var obj = {}
       for (var key in rule) {
         var value = rule[key]
+        console.log(value)
         // auto
         if (value == 'auto') {
-          if (value.match(/id$/i)) {
+          if (key.match(/id$/i)) {
             value = 'id'
           }
-          else if (value.match(/number|num|count|total|size|length/i)) {
+          else if (key.match(/number|num|count|total|size|length/i)) {
             value = 'number'
           }
-          else if (value.match(/^(is|has)/)) {
+          else if (key.match(/^(is|has)/)) {
             value = 'boolean'
           }
-          else if (value.match(/date|time/i)) {
+          else if (key.match(/date|time/i)) {
             value = 'date'
           }
-          else if (value.match(/title/i)) {
+          else if (key.match(/title/i)) {
             value = 'zh(20, 30)'
           }
-          else if (value.match(/content|text/i)) {
+          else if (key.match(/content|text/i)) {
             value = 'zh(50, 100)'
           }
-          else if (value.match(/url/i)) {
+          else if (key.match(/url/i)) {
             value = 'url'
           }
-          else if (value.match(/email/i)) {
+          else if (key.match(/email/i)) {
             value = 'email'
           }
-          else if (value.match(/name|author/i)) {
+          else if (key.match(/name|author/i)) {
             value = 'name'
           }
-          else if (value.match(/img|image|avatar/i)) {
+          else if (key.match(/img|image|avatar/i)) {
             value = 'img'
           }
-          else if (value.match(/phone/i)) {
+          else if (key.match(/phone/i)) {
             value = 'phone'
           }
           else {
@@ -200,7 +201,7 @@
       var arr = []
       var obj = rule[0]
       var min = rule[1] || 0
-      var max = min? min: 10
+      var max = min ? min : 10
       var length = obj ? random.number(min, max) : 0
       for (var i = 0; i < length; i++) {
         arr[i] = Data(obj)

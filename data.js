@@ -199,8 +199,8 @@
     if ('array' == typeOf(rule)) {
       var arr = []
       var obj = rule[0]
-      var min = rule[1] || 1
-      var max = rule[2] || min
+      var min = rule[1] || 0
+      var max = min? min: 10
       var length = obj ? random.number(min, max) : 0
       for (var i = 0; i < length; i++) {
         arr[i] = Data(obj)

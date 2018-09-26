@@ -73,7 +73,8 @@ Data({
 * { key: type } 对象类型
   * key 键名
   * type 键值，任意类型，可用类型名称生成数据，如： {userId: 'id'}
-* [ type, min=1, max=min ] 数组类型，以第一个元素为模板生成指定长度的数组
+* [ type, min=0, max=min?min:10 ] 数组类型，以第一个元素为模板生成指定长度的数组
   * type 任意类型
   * min 最小长度
   * max 最大长度
+* { key: 'auto' } 自动根据 key 推测需要返回的类型

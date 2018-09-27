@@ -124,17 +124,19 @@
 
       return canvas.toDataURL()
     },
-    color: function () {
+    color: function (min, max) {
+      min = min || 0
+      max = max || 255
       return '#' + [
-        random.number(0, 255).toString(16),
-        random.number(0, 255).toString(16),
-        random.number(0, 255).toString(16)
+        random.number(min, max).toString(16),
+        random.number(min, max).toString(16),
+        random.number(min, max).toString(16)
       ].join('')
     },
     img: function (width, height, bg, text) {
       width = width || random.number(50, 300)
       height = height || random.number(50, 300)
-      bg = bg || random.color().replace('#', '')
+      bg = bg || random.color(100, 255).replace('#', '')
       text = text || ''
       return 'http://dummyimage.com/' + width + 'x' + height + '/' + bg + '/fff&text=' + text
     },

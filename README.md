@@ -69,8 +69,9 @@ Data({
   * text 文本
 * video 视频地址
   *
-* color #颜色
-  *
+* color(min=0, max=255) #颜色
+  * min rgb最小取值
+  * max rgb最大取值
 * email 电子邮箱
   *
 * phone 手机号

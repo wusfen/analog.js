@@ -32,30 +32,44 @@ Data({
 
 Data({
   list: [
-    {id: 'id'}, 3, 15
+    {id: 'id'},
+    [3, 15]
   ]
 })
-// => 指定list数组长度[3-15]
+// => 指定list数组长度[3,15]
 
 ```
 
 ## 语法
 ```javascript
+// 基本类型
 Data('type')
 
+// 对象
 Data({
   key: 'type',
+  k: 'auto',
   ...
-}
+})
 
-Data([{}])
+// 数组
+Data(['type', [min,max]?])
+
+// 嵌套
+Data([
+  {
+    key: 'type',
+    list: ['type', [min,max]?]
+  },
+  [min, max]?
+])
 
 ```
 
 ## type
 * { key: 'auto' } 自动根据 key 推测需要返回的类型
   * key 键名
-  
+
 * id(base=1, step=1) 自增整数
   * base id起始值
   * step 自动步长
@@ -72,7 +86,7 @@ Data([{}])
   * min 最小日期
   * max 最大日期
 
-* string(min=10, max=min) 字符串
+* string(min=5, max=15) 字符串
   * min 最小长度
   * max 最大长度
 
@@ -80,7 +94,7 @@ Data([{}])
   * min 最小长度
   * max 最大长度
 
-* img(width=200, height=100, bg='#eee', text='$width x $height') 图片url
+* img(width=50~300, height=50~300) 图片url
   * width 宽度
   * height 长度
   * bg 背景颜色
@@ -117,7 +131,7 @@ Data([{}])
   * key 键名
   * type 键值，任意类型，可用类型名称生成数据，如： {userId: 'id'}
 
-* [ type, min=0, max=min?min:10 ] 数组类型，以第一个元素为模板生成指定长度的数组
+* [ type, [min=0, max=min||10]? ] 数组类型，以第一个元素为模板生成指定长度的数组
   * type 任意类型
   * min 最小长度
   * max 最大长度

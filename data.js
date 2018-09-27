@@ -228,19 +228,33 @@
       }
       return obj
     }
-    if ('array' == typeOf(rule)) {
-      var arr = []
-      var obj = rule[0]
-      var min = rule[1] || 0
-      var max = min ? min : 10
-      var length = obj ? random.number(min, max) : 0
-      for (var i = 0; i < length; i++) {
-        arr[i] = Data(obj)
+    if ('array' == typeOf(rule)) { // [{}, [min,max]]
+      var list = []
+      if (rule.length==1) {
+        rule[1] = [0, 10]
       }
-      return arr
+      if (rule.length == 2 && typeOf(rule[1]) == 'array') {
+        var obj = rule[0]
+        var range = rule[1]
+        var min = range[0]
+        var max = range[1] || min
+        var length = random.number(min, max)
+        for (var i = 0; i < length; i++) {
+          list[i] = Data(obj)
+        }
+      } else {
+        for (var i = 0; i < rule.length; i++) {
+          var obj = rule[i]
+          list[i] = Data(obj)
+        }
+      }
+      return list
     }
+
     return rule
   }
+
+  console.log(Data([{id:'auto'}]))
 
   if (typeof module != 'undefined') {
     module.exports = Data

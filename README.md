@@ -8,12 +8,13 @@
 var userRule = {
   id: 'auto',
   name: 'auto',
-  isAdmin: 'auto',
   phone: 'auto',
+  avatar: 'auto',
+  isAdmin: 'auto',
   departmentId: 'auto',
 }
 
-var user = Data(userRule) // {id:1, name:'李xx', isAdmin:true, ...}
+var user = Data(userRule) // {id:1, name:'李xx', avatar:'img url', isAdmin:true, ...}
 
 var userList = Data([userRule]) // [{}, ...] 长度随机[0-10]，可指定
 
@@ -94,7 +95,7 @@ Data([
   * min 最小长度
   * max 最大长度
 
-* img(width=50~300, height=50~300) 图片url
+* img(width=50-300, height=50-300) 图片url
   * width 宽度
   * height 长度
   * bg 背景颜色

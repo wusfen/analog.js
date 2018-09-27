@@ -33,8 +33,8 @@
       max = max || +new Date + 1000 * 60 * 60 * 24 * 365
       var value = random.number(min, max)
       var date = new Date(value)
-      date = [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-') + ' ' +
-        [date.getHours(), date.getMinutes(), date.getSeconds()].join(':')
+      date = [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/') +
+        ' ' + [date.getHours(), date.getMinutes(), date.getSeconds()].join(':')
       return date
     },
     string: function (min, max, space) {

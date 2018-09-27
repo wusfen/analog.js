@@ -254,8 +254,6 @@
     return rule
   }
 
-  console.log(Data([{id:'auto'}]))
-
   if (typeof module != 'undefined') {
     module.exports = Data
   } else {

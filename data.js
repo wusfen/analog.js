@@ -96,7 +96,7 @@
       var n3 = '梅兰竹菊'.split('')[random.number(0, 3)]
       return n1 + n2 + n3
     },
-    img: function (width, height, bg, text) {
+    imgBase64: function (width, height, bg, text) {
       width = width || 200
       height = height || 100
       bg = bg || '#eee'
@@ -124,8 +124,26 @@
 
       return canvas.toDataURL()
     },
+    color: function () {
+      return '#' + [
+        random.number(0, 255).toString(16),
+        random.number(0, 255).toString(16),
+        random.number(0, 255).toString(16)
+      ].join('')
+    },
+    img: function (width, height, bg, text) {
+      width = width || random.number(50, 300)
+      height = height || random.number(50, 300)
+      bg = bg || random.color().replace('#', '')
+      text = text || ''
+      return 'http://dummyimage.com/' + width + 'x' + height + '/' + bg + '/fff&text=' + text
+    },
+    video: function () {
+      return random.one([
+        'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400',
+      ])
+    },
     one: function (array) {
-      console.log(array)
       return array[random.number(0, array.length - 1)]
     }
   }
@@ -176,6 +194,12 @@
           else if (key.match(/content|text/i)) {
             value = 'zh(50, 100)'
           }
+          else if (key.match(/img|image|avatar/i)) {
+            value = 'img'
+          }
+          else if (key.match(/video/i)) {
+            value = 'video'
+          }
           else if (key.match(/url/i)) {
             value = 'url'
           }
@@ -184,9 +208,6 @@
           }
           else if (key.match(/name|author/i)) {
             value = 'name'
-          }
-          else if (key.match(/img|image|avatar/i)) {
-            value = 'img'
           }
           else if (key.match(/phone/i)) {
             value = 'phone'

@@ -24,7 +24,7 @@ var userList = Data([userRule]) // [{}, ...] 长度随机[0-10]，可指定
 ```javascript
 Data('id') //=> 1
 
-Data('date') // => '2018-8-8 8:8:8'
+Data('date') // => '2018/8/8 8:8:8'
 
 Data({
   total: 'number(10, 100)'

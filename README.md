@@ -13,7 +13,7 @@ var userRule = {
   departmentId: 'auto',
 }
 
-var user = Date(userRule) // {id:1, name:'李xx', isAdmin:true, ...}
+var user = Data(userRule) // {id:1, name:'李xx', isAdmin:true, ...}
 
 var userList = Data([userRule]) // [{}, ...] 长度随机[0-10]，可指定
 

@@ -38,8 +38,8 @@
       return date
     },
     string: function (min, max, space) {
-      min = min || 10
-      max = max || min
+      min = min || 5
+      max = max || 15
       space = space || ' '
       var endCode = 0x007a
       var startCode = 0x0061
@@ -138,7 +138,13 @@
       height = height || random.number(50, 300)
       bg = bg || random.color(100, 255).replace('#', '')
       text = text || ''
-      return 'http://dummyimage.com/' + width + 'x' + height + '/' + bg + '/fff&text=' + text
+      // var url = 'http://dummyimage.com/$widthx$height/$bg/fff&text=$text'
+      var url = 'http://placeimg.com/$width/$height'
+      return url
+        .replace('$width', width)
+        .replace('$height', height)
+        .replace('$bg', bg)
+        .replace('$text', text)
     },
     video: function () {
       return random.one([

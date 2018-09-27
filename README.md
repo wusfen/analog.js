@@ -1,44 +1,60 @@
 # data.js
-数据生成器
-
-
-## 用法
-```javascript
-Data('type')
-Data('type(min, max)')
-Data('type(args...)')
-```
+全自动数据生成器
 
 ## 示例
 
-### 简单示例
+### 自动
+```javascript
+var userRule = {
+  id: 'auto',
+  name: 'auto',
+  isAdmin: 'auto',
+  phone: 'auto',
+  departmentId: 'auto',
+}
+
+var user = Date(userRule) // {id:1, name:'李xx', isAdmin:true, ...}
+
+var userList = Data([userRule]) // [{}, ...] 长度随机[0-10]，可指定
+
+```
+
+### 指定
 ```javascript
 Data('id') //=> 1
-Data('date') // => Tue Sep 25 2018 08:08:08 GMT+0800 (中国标准时间)
-```
 
-### 复杂示例
-```javascript
+Data('date') // => '2018-8-8 8:8:8'
+
 Data({
-  number: 'number',
-  boolean: 'boolean',
-  string: 'string',
-  date: 'date',
-  img: 'img(300,150)',
-  id: 'id',
-  name: 'name',
-  url: 'url',
-  email: 'email',
-  zh: 'zh(50, 80)',
-  array: [{
-    id: 'id',
-    name: 'name',
-    email: 'email',
-  }, 3, 5]
+  total: 'number(10, 100)'
 })
+// => {total: 51}
+
+Data({
+  list: [
+    {id: 'id'}, 3, 15
+  ]
+})
+// => 指定list数组长度[3-15]
+
 ```
 
-## 类型
+## 语法
+```javascript
+Data('type')
+
+Data({
+  key: 'type',
+  ...
+}
+
+Data([{}])
+
+```
+
+## type
+* { key: 'auto' } 自动根据 key 推测需要返回的类型
+  * key 键名
 * id(base=1, step=1) 自增整数
   * base id起始值
   * step 自动步长
@@ -68,15 +84,15 @@ Data({
   * bg 背景颜色
   * text 文本
 * video 视频地址
-  *
+  
 * color #颜色
-  *
+  
 * email 电子邮箱
-  *
+  
 * phone 手机号
-  *
+  
 * name 两三个字的中文姓名
-  *
+  
 * zh(min=25, max=min) 中文字符
   * min 最小长度
   * max 最大长度
@@ -91,5 +107,3 @@ Data({
   * type 任意类型
   * min 最小长度
   * max 最大长度
-* { key: 'auto' } 自动根据 key 推测需要返回的类型
-  * key 键名

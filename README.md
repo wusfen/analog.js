@@ -1,5 +1,7 @@
 # data.js
-全自动 模拟数据 生成器
+随机模拟数据 生成器
+
+免写规则，自动推测返回类型
 
 ## 示例
 
@@ -8,12 +10,13 @@
 var userRule = {
   id: 'auto',
   name: 'auto',
-  isAdmin: 'auto',
   phone: 'auto',
+  avatar: 'auto',
+  isAdmin: 'auto',
   departmentId: 'auto',
 }
 
-var user = Date(userRule) // {id:1, name:'李xx', isAdmin:true, ...}
+var user = Data(userRule) // {id:1, name:'李xx', avatar:'img url', isAdmin:true, ...}
 
 var userList = Data([userRule]) // [{}, ...] 长度随机[0-10]，可指定
 
@@ -23,7 +26,7 @@ var userList = Data([userRule]) // [{}, ...] 长度随机[0-10]，可指定
 ```javascript
 Data('id') //=> 1
 
-Data('date') // => '2018-8-8 8:8:8'
+Data('date') // => '2018/8/8 8:8:8'
 
 Data({
   total: 'number(10, 100)'
@@ -94,7 +97,7 @@ Data([
   * min 最小长度
   * max 最大长度
 
-* img(width=50~300, height=50~300) 图片url
+* img(width=50-300, height=50-300) 图片url
   * width 宽度
   * height 长度
   * bg 背景颜色
